@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-06-11T09:12:50.280Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.21 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="phVGAafZ28fFVJ74C0aH" version="22.1.21" type="device" pages="12">
+<mxfile host="Electron" modified="2024-06-11T10:51:06.959Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.21 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="F61kyOaR2Vq5viOplFyW" version="22.1.21" type="device" pages="12">
   <diagram id="OZGe7tmDJBvbiWwJsjoA" name="Принцип QA">
     <mxGraphModel dx="954" dy="579" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -142,7 +142,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="База знаний" id="xVZM6TLxIBFRc_VgXR2G">
-    <mxGraphModel dx="954" dy="579" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1004" dy="609" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="zF6gkv-oyLTzakGiCgGQ-0" />
         <mxCell id="zF6gkv-oyLTzakGiCgGQ-1" parent="zF6gkv-oyLTzakGiCgGQ-0" />
@@ -1697,7 +1697,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="VSEmi-dkiGPDHB9QAT4r" name="Токены входа">
-    <mxGraphModel dx="954" dy="579" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="909" dy="551" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
