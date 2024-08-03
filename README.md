@@ -5,7 +5,7 @@
 Question-answering system
 </h1>
 
-Implemented as part of a master's diploma work. The system is based on [pre-trained models](https://arxiv.org/abs/2309.10931) of transformer architecture (in particular, ruBERT), and for their fine-tuning the differential evolution algorithm is used to select values of hyperparameters of the AdamW optimizer. The [SberQuAD](https://huggingface.co/datasets/kuznetsoffandrey/sberquad) dataset is used for training.
+Implemented as part of a master's diploma work. The system is based on [pre-trained models](https://arxiv.org/abs/2309.10931) of Transformer architecture (in particular, ruBERT). For their fine-tuning the differential evolution algorithm is used to select values of hyperparameters of the AdamW optimizer. The [SberQuAD](https://huggingface.co/datasets/kuznetsoffandrey/sberquad) dataset is used for training.
 
 ## How it works
 
