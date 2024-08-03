@@ -5,50 +5,50 @@
 Question-answering system
 </h1>
 
-Реализована в рамках магистерской дипломной работы. В основе системы используются [предобученные модели](https://arxiv.org/abs/2309.10931) с архитектурой трансформера (в частности, *ruBERT*), а для их тонкой настройки применяется алгоритм дифференциальной эволюции для подбора значений гиперпараметров оптимизатора *AdamW*. Для обучения используется набор данных [*SberQuAD*](https://huggingface.co/datasets/kuznetsoffandrey/sberquad).
+Implemented as part of a master's diploma work. The system is based on [pre-trained models](https://arxiv.org/abs/2309.10931) of transformer architecture (in particular, ruBERT), and for their fine-tuning the differential evolution algorithm is used to select values of hyperparameters of the AdamW optimizer. The [SberQuAD](https://huggingface.co/datasets/kuznetsoffandrey/sberquad) dataset is used for training.
 
-## Принцип работы системы
+## How it works
 
-Реализованная система способна отвечать на вопросы по загруженным в нее документам. Для этого в первую очередь необходимо сформировать базу знаний:
+The implemented system is capable of answering questions on the documents loaded into it. For this purpose, first of all, it is necessary to form a knowledge base:
 
 ![](assets/EN_DB.jpg)
 
-Документы разбиваются на небольшие фрагменты (например, по 500 символов), затем преобразуются в вектора с помощью модели эмбеддингов [*E5*](https://arxiv.org/abs/2402.05672), после чего отправляются в базу данных.
+Documents are fragmented into small chunks (e.g., 500 characters each), then converted into vectors using the [E5](https://arxiv.org/abs/2402.05672) embedding model, before being sent to the vector database.
 
-Ответ на вопрос по сформированной базе данных осуществляется по простой схеме:
+Answering a question using this vector database follows a simple scheme:
 
 ![](assets/EN_concept.jpg)
 
-Весь принцип работы делится на две части:
-1. **Поиск контекста** (*слева на картинке*). Вопрос преобразуется в вектор через модель *E5*, затем в базе данных осуществляется поиск наиболее семантически близких к нему фрагментов. Близость определяется косинусной метрикой сходства.
-2. **Извлечение ответа** (*справа на картинке*). Вопрос объединяется с найденным контекстом и отправляется в модель *ruBERT*, которая извлекает из всего входа только ответ.
+Question answering process consists of two parts:
+1. **Search for the context** (*on the left side*). The question is converted into a vector via E5 model, then the most semantically similar fragments are searched in the vector database. The closeness is determined by the cosine similarity.
+2. **Answer extraction** (*on the right side*). The question is combined with the found context and sent to the ruBERT model, which extracts only the answer from the whole input.
 
-Вход для модели *ruBERT* формируется следующим образом:
+The input for the ruBERT model is formed as follows:
 
 ![](assets/EN_input.jpg)
 
-## Пример работы системы
+## Example of question answering <kbd>:ru:</kbd>
 
-`Вопрос:` Когда русские войска располагались у крепости Бранау?
+`Question:` Когда русские войска располагались у крепости Бранау?
 
-`Ответ:` В октябре 1805 года
+`Answer:` В октябре 1805 года
 
-`Найденный контекст:` 
-> ...и хорошо! - сказал он, сердито посмотрев на бесчувственную маленькую княгиню, укоризненно покачал головою и захлопнул дверь.
-ЧАСТЬ BTОРАЯ
-I
-**В октябре 1805 года** русские войска занимали села и города эрцгерцогства Австрийского, и еще новые полки приходили из России и, отягощая постоем жителей, располагались у крепости Браунау. В Браунау была главная квартира главнокомандующего Кутузова... <p align="right">© Война и мир. Том 1 (~37% книги)</p>
+`Found context:` 
+> ...и хорошо! - сказал он, сердито посмотрев на бесчувственную маленькую княгиню, укоризненно покачал головою и захлопнул дверь.<br>
+ЧАСТЬ BTОРАЯ<br>
+I<br>
+<mark>В октябре 1805 года</mark> русские войска занимали села и города эрцгерцогства Австрийского, и еще новые полки приходили из России и, отягощая постоем жителей, располагались у крепости Браунау. В Браунау была главная квартира главнокомандующего Кутузова... <p align="right">© War and Peace. Volume 1 (~37% of the book)</p>
 
-## Структура репозитория
+## Repository structure
 
-**Ноутбуки:**
-- `chroma_preparing.ipynb` - формирование базы знаний вопросно-ответной системы с использованием библиотеки [Chroma](https://www.trychroma.com/) и романа "Война и мир", взятого в качестве примера;
-- `ruBERT_AdamW_tuning.ipynb` - подбор значений для гиперпараметров оптимизатора *AdamW* при тонкой настройке *ruBERT* на наборе *SberQuAD*;
-- `ruBERT_fine_tuning.ipynb` - тонкая настройка модели *ruBERT* со стандартными значениями гиперпараметров оптимизатора *AdamW*;
-- `ruBERT_after_DE_fine_tuning.ipynb` - тонкая настройка модели *ruBERT* после подобра значений гиперпараметров для *AdamW* алгоритмом дифференциальной эволюции;
-- `QA_system.ipynb` - объединенная вопросно-ответная система, соединяющая хранилище данных и модель для извлечения ответов;
-- `QA_models_comparison.ipynb` - сравнение разных моделей для извлечения ответов из контекста на наборе данных *SberQuAD*.
+**Notebooks:**
+- `chroma_preparing.ipynb` - creating a knowledge base of question-answering system using [Chroma](https://www.trychroma.com/) library and the novel "War and Peace" taken as an example;
+- `ruBERT_AdamW_tuning.ipynb` - selection of values for the hyperparameters of the AdamW optimizer when fine-tuning ruBERT on the SberQuAD dataset;
+- `ruBERT_fine_tuning.ipynb` - fine-tuning of the ruBERT model with standard values of hyperparameters of the AdamW optimizer;
+- `ruBERT_after_DE_fine_tuning.ipynb` - fine-tuning of the ruBERT model after selection the hyperparameter values for AdamW by the differential evolution algorithm;
+- `QA_system.ipynb` - a united question-answering system that connects a data storage and a model for answer extraction;
+- `QA_models_comparison.ipynb` - comparison of different models for extracting answers from context on the SberQuAD dataset.
 
-**Папки:**
-- `books/` - папка с четырьмя томами романа "Война и мир" в формате *.txt*, которые используются в качестве примера базы знаний системы;
-- `assets/` - папка с изображениями для *README* и дополнительным файлом `schemes.drawio`, в котором представлены и другие схемы, относящиеся к этой работе, в том числе модели трансформера.
+**Folders:**
+- `books/` - folder with four volumes of the novel "War and Peace" (in Russian) in *.txt* format, which are used as an example of the system's knowledge base;
+- `assets/` - folder with images for the README and an additional *.drawio* file that contains other schemas related to this work, including Transformer models.
